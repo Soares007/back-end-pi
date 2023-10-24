@@ -2,6 +2,7 @@ package fatec.sp.gov.br.sistemaescolarbackend.entities;
 
 import java.io.Serializable;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,13 +10,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="TBL_COURSE")
-public class Course implements Serializable {
+@Table(name="TBL_CLASS_SUBJECTS")
+public class ClassSubject implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @Column(length = 1024,nullable = false)
     private String description;
+    private String teacher;
+    private String time;
+    
     public Long getId() {
         return id;
     }
@@ -33,7 +38,20 @@ public class Course implements Serializable {
     }
     public void setDescription(String description) {
         this.description = description;
+    } 
+    public String getTeacher() {
+        return teacher;
     }
+    public void setTeacher(String teacher) {
+        this.teacher = teacher;
+    }
+    public String getTime() {
+        return time;
+    }
+    public void setTime(String time) {
+        this.time = time;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -49,14 +67,12 @@ public class Course implements Serializable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Course other = (Course) obj;
+        ClassSubject other = (ClassSubject) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
         } else if (!id.equals(other.id))
             return false;
         return true;
-    }
-
-    
+    }  
 }
