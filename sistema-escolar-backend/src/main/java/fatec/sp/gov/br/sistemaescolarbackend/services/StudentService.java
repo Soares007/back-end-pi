@@ -34,7 +34,7 @@ public class StudentService {
     public void update(long id, StudentRequest student) {
         try {
             var updateStudent = this.studentRepository.getReferenceById(id);
-            updateStudent.setUser(student.user());
+            updateStudent.setUser_name(student.user_name());
             updateStudent.setPassword(student.password());
             updateStudent.setFull_name(student.full_name());
             updateStudent.setEmail(student.email());

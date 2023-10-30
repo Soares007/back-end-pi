@@ -10,7 +10,7 @@ public record TeacherRequest(
     String name,
 
     @NotBlank(message = "Usuário não pode ser vazio")
-    String user,
+    String user_name,
 
     String school_subject
 ) {

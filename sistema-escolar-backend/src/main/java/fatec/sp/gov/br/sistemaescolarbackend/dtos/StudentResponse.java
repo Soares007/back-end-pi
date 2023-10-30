@@ -5,7 +5,7 @@ public record StudentResponse(
     String email,
     String full_name,
     String password,
-    String user
+    String user_name
 ) {
 }
 

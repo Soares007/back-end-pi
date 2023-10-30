@@ -14,7 +14,7 @@ public class Student implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String email;
-    private String user;
+    private String user_name;
     private String full_name;
     private String password;
     public Long getId() {
@@ -48,13 +48,12 @@ public class Student implements Serializable {
         this.password = password;
     }
 
-    public String getUser() {
-        return user;
+    public String getUser_name() {
+        return user_name;
     }
-    
-    public void setUser(String user) {
-        this.user = user;
-    }
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    } 
     
     @Override
     public int hashCode() {
@@ -78,5 +77,5 @@ public class Student implements Serializable {
         } else if (!id.equals(other.id))
             return false;
         return true;
-    } 
+    }
 }

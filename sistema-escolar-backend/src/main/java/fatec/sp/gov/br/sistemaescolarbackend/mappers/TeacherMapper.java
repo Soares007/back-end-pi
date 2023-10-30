@@ -11,7 +11,7 @@ public class TeacherMapper {
         teacher.setCpf(request.cpf());
         teacher.setName(request.name());
         teacher.setSchool_subject(request.school_subject());
-        teacher.setUser(request.user());
+        teacher.setUser_name(request.user_name());
         return teacher;
     }
 
@@ -21,7 +21,7 @@ public class TeacherMapper {
             teacher.getCpf(),
             teacher.getName(),
             teacher.getSchool_subject(),
-            teacher.getUser()
+            teacher.getUser_name()
         );
     }
 }

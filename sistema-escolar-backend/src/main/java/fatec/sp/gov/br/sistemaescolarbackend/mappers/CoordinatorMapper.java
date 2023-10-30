@@ -8,7 +8,7 @@ public class CoordinatorMapper {
 
     public static Coordinator toEntity(CoordinatorRequest request) {
         Coordinator coordinator = new Coordinator();
-        coordinator.setUser(request.user());
+        coordinator.setUser_name(request.user_name());
         coordinator.setPassword(request.password());
         return coordinator;
     }
@@ -16,7 +16,7 @@ public class CoordinatorMapper {
     public static CoordinatorResponse toDTO(Coordinator coordinator) {
         return new CoordinatorResponse(
                 coordinator.getId(),
-                coordinator.getUser()
+                coordinator.getUser_name()
         );
     }
 }

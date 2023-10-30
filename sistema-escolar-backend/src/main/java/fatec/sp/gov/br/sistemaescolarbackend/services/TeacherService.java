@@ -38,7 +38,7 @@ public class TeacherService {
             updateTeacher.setCpf(teacher.cpf());
             updateTeacher.setName(teacher.name());
             updateTeacher.setSchool_subject(teacher.school_subject());
-            updateTeacher.setUser(teacher.user());
+            updateTeacher.setUser_name(teacher.user_name());
             this.teacherRepository.save(updateTeacher);
         } catch (EntityNotFoundException e) {
             throw new EntityNotFoundException("Teacher not found");

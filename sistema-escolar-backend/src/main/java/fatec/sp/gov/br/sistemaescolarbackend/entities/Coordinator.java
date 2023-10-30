@@ -13,7 +13,7 @@ public class Coordinator implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String user;
+    private String user_name;
     private String password;
 
     public Long getId() {
@@ -24,12 +24,12 @@ public class Coordinator implements Serializable {
         this.id = id;
     }
 
-    public String getUser() {
-        return user;
+    public String getUser_name() {
+        return user_name;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
     }
 
     public String getPassword() {
