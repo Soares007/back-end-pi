@@ -2,7 +2,6 @@ package fatec.sp.gov.br.sistemaescolarbackend.entities;
 
 import java.io.Serializable;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,8 +17,6 @@ public class Teacher implements Serializable {
     private String cpf;
     private String name;
     private String school_subject;
-    @Column(length = 1024, nullable = false)
-    private String user_name;
 
     public Long getId() {
         return id;
@@ -51,14 +48,6 @@ public class Teacher implements Serializable {
 
     public void setSchool_subject(String school_subject) {
         this.school_subject = school_subject;
-    }
-
-    public String getUser_name() {
-        return user_name;
-    }
-
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
     }
   
 

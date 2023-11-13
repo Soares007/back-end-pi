@@ -13,7 +13,7 @@ public class HistoryMapper {
         history.setTeacher(request.teacher());
         history.setClass_subject(request.class_subject());
         history.setTime(request.time());
-        history.setDay(request.day());
+        history.setClass_day(request.class_day());
         history.setRoom(request.room());
         return history;
     }
@@ -24,7 +24,7 @@ public class HistoryMapper {
                 history.getTeacher(),
                 history.getClass_subject(),
                 history.getTime(),
-                history.getDay(),
+                history.getClass_day(),
                 history.getRoom()
         );
     }

@@ -5,7 +5,9 @@ public record ClassSubjectResponse (
     String name,
     String description,
     String teacher,
-    String time
-){
+    String starttime,
+    String endtime,
+    String dayofweek
+) {
 
 }

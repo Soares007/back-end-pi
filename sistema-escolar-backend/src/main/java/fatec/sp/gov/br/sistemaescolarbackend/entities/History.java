@@ -16,55 +16,46 @@ public class History implements Serializable {
     private String teacher;
     private String class_subject;
     private String time;
-    private String day;
+    private String class_day;
     private String room;
-
+    
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
-
     public String getTeacher() {
         return teacher;
     }
-
     public void setTeacher(String teacher) {
         this.teacher = teacher;
     }
-
     public String getClass_subject() {
         return class_subject;
     }
-
     public void setClass_subject(String class_subject) {
         this.class_subject = class_subject;
     }
-
     public String getTime() {
         return time;
     }
-
     public void setTime(String time) {
         this.time = time;
     }
-
-    public String getDay() {
-        return day;
+    public String getClass_day() {
+        return class_day;
     }
-
-    public void setDay(String day) {
-        this.day = day;
+    public void setClass_day(String class_day) {
+        this.class_day = class_day;
     }
-
     public String getRoom() {
         return room;
     }
-
     public void setRoom(String room) {
         this.room = room;
     }
+
+    
 }
  

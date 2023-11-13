@@ -16,11 +16,13 @@ public class ClassSubject implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @Column(length = 1024,nullable = false)
+    @Column(length = 1024)
     private String description;
     private String teacher;
-    private String time;
-    
+    private String starttime;
+    private String endtime;
+    private String dayofweek;
+
     public Long getId() {
         return id;
     }
@@ -38,20 +40,31 @@ public class ClassSubject implements Serializable {
     }
     public void setDescription(String description) {
         this.description = description;
-    } 
+    }
     public String getTeacher() {
         return teacher;
     }
     public void setTeacher(String teacher) {
         this.teacher = teacher;
     }
-    public String getTime() {
-        return time;
+    public String getStarttime() {
+        return starttime;
     }
-    public void setTime(String time) {
-        this.time = time;
+    public void setStarttime(String starttime) {
+        this.starttime = starttime;
     }
-
+    public String getEndtime() {
+        return endtime;
+    }
+    public void setEndtime(String endtime) {
+        this.endtime = endtime;
+    }
+    public String getDayofweek() {
+        return dayofweek;
+    }
+    public void setDayofweek(String dayofweek) {
+        this.dayofweek = dayofweek;
+    }
     @Override
     public int hashCode() {
         final int prime = 31;

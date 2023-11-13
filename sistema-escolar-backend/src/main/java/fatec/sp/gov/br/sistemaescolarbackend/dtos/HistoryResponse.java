@@ -5,7 +5,7 @@ public record HistoryResponse (
     String teacher,
     String class_subject,
     String time,
-    String day,
+    String class_day,
     String room
 ) {
 }

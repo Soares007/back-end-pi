@@ -12,6 +12,7 @@ import java.util.List;
 
 @Service
 public class ClassSubjectService {
+
     @Autowired
     private ClassSubjectRepository classSubjectRepository;
 
@@ -19,8 +20,8 @@ public class ClassSubjectService {
         return classSubjectRepository.findAll();
     }
 
-    public ClassSubject createClassSubject(ClassSubject class_subject) {
-        return classSubjectRepository.save(class_subject);
+    public ClassSubject createClassSubject(ClassSubject classSubject) {
+        return classSubjectRepository.save(classSubject);
     }
 
     public ClassSubject getClassSubjectById(Long id) {
@@ -31,13 +32,15 @@ public class ClassSubjectService {
         classSubjectRepository.deleteById(id);
     }
 
-    public void update(long id, ClassSubjectRequest class_subject) {
+    public void update(long id, ClassSubjectRequest classSubjectRequest) {
         try {
             var updateClassSubject = this.classSubjectRepository.getReferenceById(id);
-            updateClassSubject.setName(class_subject.name());
-            updateClassSubject.setDescription(class_subject.description());
-            updateClassSubject.setTeacher(class_subject.teacher());
-            updateClassSubject.setTime(class_subject.time());
+            updateClassSubject.setName(classSubjectRequest.name());
+            updateClassSubject.setDescription(classSubjectRequest.description());
+            updateClassSubject.setTeacher(classSubjectRequest.teacher());
+            updateClassSubject.setStarttime(classSubjectRequest.starttime());
+            updateClassSubject.setEndtime(classSubjectRequest.endtime());
+            updateClassSubject.setDayofweek(classSubjectRequest.dayofweek());
             this.classSubjectRepository.save(updateClassSubject);
         } catch (EntityNotFoundException e) {
             throw new EntityNotFoundException("Class subject not found");

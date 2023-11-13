@@ -13,7 +13,7 @@ public record HistoryRequest (
     String time,
     
     @NotBlank(message = "Dia não pode estar em branco")
-    String day,
+    String class_day,
     
     @NotBlank(message = "Sala não pode estar em branco")
     String room
