@@ -12,9 +12,11 @@ public class HistoryMapper {
         History history = new History();
         history.setTeacher(request.teacher());
         history.setClass_subject(request.class_subject());
-        history.setTime(request.time());
-        history.setClass_day(request.class_day());
+        history.setEndtime(request.starttime());
+        history.setEndtime(request.endtime());
+        history.setDayofweek(request.dayofweek());
         history.setRoom(request.room());
+        history.setLaboratory(request.laboratory());
         return history;
     }
 
@@ -23,12 +25,13 @@ public class HistoryMapper {
                 history.getId(),
                 history.getTeacher(),
                 history.getClass_subject(),
-                history.getTime(),
-                history.getClass_day(),
-                history.getRoom()
+                history.getStarttime(),
+                history.getEndtime(),
+                history.getDayofweek(),
+                history.getRoom(),
+                history.getLaboratory()
         );
     }
-
     public static List<HistoryResponse> toDTOList(List<History> histories) {
         return histories.stream().map(HistoryMapper::toDTO).collect(Collectors.toList());
     }

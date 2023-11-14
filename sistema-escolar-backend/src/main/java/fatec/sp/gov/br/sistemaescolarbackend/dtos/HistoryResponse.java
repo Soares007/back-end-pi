@@ -4,8 +4,10 @@ public record HistoryResponse (
     long id,
     String teacher,
     String class_subject,
-    String time,
-    String class_day,
-    String room
+    String starttime,
+    String endtime,
+    String dayofweek,
+    String room,
+    String laboratory
 ) {
 }

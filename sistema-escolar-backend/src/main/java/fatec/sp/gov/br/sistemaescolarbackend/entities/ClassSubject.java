@@ -22,6 +22,8 @@ public class ClassSubject implements Serializable {
     private String starttime;
     private String endtime;
     private String dayofweek;
+    private String room;
+    private String laboratory;
 
     public Long getId() {
         return id;
@@ -65,6 +67,20 @@ public class ClassSubject implements Serializable {
     public void setDayofweek(String dayofweek) {
         this.dayofweek = dayofweek;
     }
+   
+    public String getRoom() {
+        return room;
+    }
+    public void setRoom(String room) {
+        this.room = room;
+    }
+    public String getLaboratory() {
+        return laboratory;
+    }
+    public void setLaboratory(String laboratory) {
+        this.laboratory = laboratory;
+    }
+    
     @Override
     public int hashCode() {
         final int prime = 31;

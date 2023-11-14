@@ -7,15 +7,11 @@ public record HistoryRequest (
     String teacher,
     
     @NotBlank(message = "Disciplina não pode estar em branco")
-    String class_subject,
-    
-    @NotBlank(message = "Horário não pode estar em branco")
-    String time,
-    
-    @NotBlank(message = "Dia não pode estar em branco")
-    String class_day,
-    
-    @NotBlank(message = "Sala não pode estar em branco")
-    String room
+    String class_subject, 
+    String starttime,
+    String endtime,
+    String dayofweek,
+    String room,
+    String laboratory
 ) {
 }

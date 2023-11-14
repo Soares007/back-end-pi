@@ -36,8 +36,9 @@ public class HistoryService {
             var updateHistory = this.historyRepository.getReferenceById(id);
             updateHistory.setTeacher(request.teacher());
             updateHistory.setClass_subject(request.class_subject());
-            updateHistory.setTime(request.time());
-            updateHistory.setClass_day(request.class_day());
+            updateHistory.setStarttime(request.starttime());
+            updateHistory.setEndtime(request.endtime());
+            updateHistory.setDayofweek(request.dayofweek());
             updateHistory.setRoom(request.room());
             this.historyRepository.save(updateHistory);
         } catch (EntityNotFoundException e) {

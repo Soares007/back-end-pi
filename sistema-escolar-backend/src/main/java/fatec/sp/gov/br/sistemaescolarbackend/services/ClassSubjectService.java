@@ -41,6 +41,8 @@ public class ClassSubjectService {
             updateClassSubject.setStarttime(classSubjectRequest.starttime());
             updateClassSubject.setEndtime(classSubjectRequest.endtime());
             updateClassSubject.setDayofweek(classSubjectRequest.dayofweek());
+            updateClassSubject.setRoom(classSubjectRequest.room());
+            updateClassSubject.setLaboratory(classSubjectRequest.laboratory());
             this.classSubjectRepository.save(updateClassSubject);
         } catch (EntityNotFoundException e) {
             throw new EntityNotFoundException("Class subject not found");
