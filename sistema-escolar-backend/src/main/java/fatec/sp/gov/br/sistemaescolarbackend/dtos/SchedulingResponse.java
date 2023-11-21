@@ -1,0 +1,15 @@
+package fatec.sp.gov.br.sistemaescolarbackend.dtos;
+
+public record SchedulingResponse(
+        Long id,
+        Long courseId,
+        Long classSubjectId,
+        String professor,
+        String startTime,
+        String endTime,
+        String dayOfWeek,
+        String room,
+        String laboratory
+) {
+
+}
