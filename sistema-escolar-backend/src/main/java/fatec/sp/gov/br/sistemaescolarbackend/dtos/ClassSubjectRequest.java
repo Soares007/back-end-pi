@@ -13,5 +13,5 @@ public record ClassSubjectRequest (
     String room,
     String laboratory
 ) {
-
+    
 }
