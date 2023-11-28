@@ -1,11 +1,13 @@
 package fatec.sp.gov.br.sistemaescolarbackend.dtos;
 
+import java.util.List;
+
 public record CourseResponse (
     Long id,
     String name,
-    int course_year,
-    int semester,
+    String courseYear,
+    String semester,
     String shift,
-    String discipline
+    List<String> classSubjects
 ) {
 }

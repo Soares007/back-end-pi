@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import fatec.sp.gov.br.sistemaescolarbackend.dtos.CourseRequest;
 import fatec.sp.gov.br.sistemaescolarbackend.entities.Course;
+import fatec.sp.gov.br.sistemaescolarbackend.mappers.CourseMapper;
 import fatec.sp.gov.br.sistemaescolarbackend.services.CourseService;
 
 import java.util.List;
@@ -28,7 +29,8 @@ public class CourseController {
     }
 
     @PostMapping
-    public Course createCourse(@RequestBody Course course) {
+    public Course createCourse(@RequestBody CourseRequest courseRequest) {
+        Course course = CourseMapper.toEntity(courseRequest); // Convert CourseRequest to Course
         return courseService.createCourse(course);
     }
 
@@ -38,10 +40,9 @@ public class CourseController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Void> update(@RequestBody CourseRequest course,
-                                       @PathVariable long id
-    ){
-        this.courseService.update(id, course);
+    public ResponseEntity<Void> update(@RequestBody CourseRequest courseRequest,
+            @PathVariable long id) {
+        this.courseService.update(id, courseRequest);
         return ResponseEntity.ok().build();
     }
 }
