@@ -2,12 +2,15 @@ package fatec.sp.gov.br.sistemaescolarbackend.resources;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import fatec.sp.gov.br.sistemaescolarbackend.dtos.CourseRequest;
-import fatec.sp.gov.br.sistemaescolarbackend.entities.Course;
+import fatec.sp.gov.br.sistemaescolarbackend.dtos.CourseResponse;
 import fatec.sp.gov.br.sistemaescolarbackend.services.CourseService;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -15,33 +18,42 @@ import java.util.List;
 @CrossOrigin
 public class CourseController {
     @Autowired
-    private CourseService courseService;
+    private CourseService service;
 
     @GetMapping
-    public List<Course> getAllCourses() {
-        return courseService.getAllCourses();
+    public ResponseEntity<List<CourseResponse>> getCourses() {
+        var courses = this.service.getCourseResponses();
+        return ResponseEntity.ok(courses);
     }
 
-    @GetMapping("/{id}")
-    public Course getCourse(@PathVariable Long id) {
-        return courseService.getCourseById(id);
+    @GetMapping("{id}")
+    public ResponseEntity<CourseResponse> getCourse(@PathVariable long id) {
+        var course = this.service.getCourseResponse(id);
+        return ResponseEntity.ok(course);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> deleteCourse(@PathVariable long id) {
+        this.service.deleteCourseById(id);
+        return ResponseEntity.noContent().build();
     }
 
     @PostMapping
-    public Course createCourse(@RequestBody Course course) {
-        return courseService.createCourse(course);
-    }
-
-    @DeleteMapping("/{id}")
-    public void deleteCourse(@PathVariable Long id) {
-        courseService.deleteCourse(id);
+    public ResponseEntity<CourseResponse> save(@Validated @RequestBody CourseRequest course) {
+        var savedCourse = this.service.save(course);
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(savedCourse.id())
+                .toUri();
+        return ResponseEntity.created(location).body(savedCourse);
     }
 
     @PutMapping("{id}")
     public ResponseEntity<Void> update(@RequestBody CourseRequest course,
                                        @PathVariable long id
     ){
-        this.courseService.update(id, course);
+        this.service.update(id, course);
         return ResponseEntity.ok().build();
     }
 }

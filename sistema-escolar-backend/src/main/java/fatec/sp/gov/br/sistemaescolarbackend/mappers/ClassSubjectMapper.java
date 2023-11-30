@@ -14,7 +14,6 @@ public class ClassSubjectMapper {
         classSubject.setStarttime(request.starttime());
         classSubject.setEndtime(request.endtime());
         classSubject.setDayofweek(request.dayofweek());
-        classSubject.setRoom(request.room());
         return classSubject;
     }
 
@@ -26,9 +25,7 @@ public class ClassSubjectMapper {
                 classSubject.getTeacher(),
                 classSubject.getStarttime(),
                 classSubject.getEndtime(),
-                classSubject.getDayofweek(),
-                classSubject.getRoom(),
-                classSubject.getLaboratory()
+                classSubject.getDayofweek()
         );
     }
 }

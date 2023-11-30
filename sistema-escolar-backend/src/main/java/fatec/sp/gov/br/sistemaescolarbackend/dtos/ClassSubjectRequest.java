@@ -9,9 +9,7 @@ public record ClassSubjectRequest (
     String teacher,
     String starttime,
     String endtime,
-    String dayofweek,
-    String room,
-    String laboratory
+    String dayofweek
 ) {
-
+    
 }

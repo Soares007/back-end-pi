@@ -1,7 +1,10 @@
 package fatec.sp.gov.br.sistemaescolarbackend.entities;
 
 import java.io.Serializable;
+import java.util.List;
+
 import jakarta.persistence.Entity;
+
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -14,10 +17,10 @@ public class Course implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private int course_year;
-    private int semester;
+    private String courseYear;
+    private String semester;
     private String shift;
-    private String discipline;
+    private List<Integer> classSubjects;
 
     public Long getId() {
         return id;
@@ -35,19 +38,19 @@ public class Course implements Serializable {
         this.name = name;
     }
 
-    public int getYear() {
-        return course_year;
+    public String getCourseYear() {
+        return courseYear;
     }
 
-    public void setYear(int course_year) {
-        this.course_year = course_year;
+    public void setCourseYear(String courseYear) {
+        this.courseYear = courseYear;
     }
 
-    public int getSemester() {
+    public String getSemester() {
         return semester;
     }
 
-    public void setSemester(int semester) {
+    public void setSemester(String semester) {
         this.semester = semester;
     }
 
@@ -59,14 +62,13 @@ public class Course implements Serializable {
         this.shift = shift;
     }
 
-    public String getDiscipline() {
-        return discipline;
+    public List<Integer> getClassSubjects() {
+        return classSubjects;
     }
 
-    public void setDiscipline(String discipline) {
-        this.discipline = discipline;
+    public void setClassSubjects(List<Integer> classSubjects) {
+        this.classSubjects = classSubjects;
     }
-
 
     @Override
     public int hashCode() {
@@ -92,4 +94,5 @@ public class Course implements Serializable {
             return false;
         return true;
     }
+
 }

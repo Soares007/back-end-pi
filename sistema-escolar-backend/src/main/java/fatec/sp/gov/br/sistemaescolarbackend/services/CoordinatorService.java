@@ -10,6 +10,7 @@ import jakarta.persistence.EntityNotFoundException;
 
 import java.util.List;
 
+
 @Service
 public class CoordinatorService {
     @Autowired
