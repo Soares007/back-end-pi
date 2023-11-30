@@ -23,13 +23,13 @@ class SistemaEscolarBackendApplicationTests {
     }
 
     @Test
-    @DisplayName("A coordinator should not be valid when the username is not empty")
+    @DisplayName("A coordinator should not be valid when the username is not empty.")
     void isValid_ReturnFalse_WhenUsernameIsNotEmpty() {
         Assertions.assertFalse(coordinatorService.isValid(coordinator));
     }
 
     @Test
-    @DisplayName("A coordinator should be valid when the username is empty")
+    @DisplayName("A coordinator should be valid when the username is empty.")
     void isValid_ReturnTrue_WhenUsernameIsEmpty() {
         coordinator.setUser_name("");
         Assertions.assertTrue(coordinatorService.isValid(coordinator));
