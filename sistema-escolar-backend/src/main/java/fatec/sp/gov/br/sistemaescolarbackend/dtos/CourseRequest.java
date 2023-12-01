@@ -1,6 +1,5 @@
 package fatec.sp.gov.br.sistemaescolarbackend.dtos;
 
-import java.util.Collections;
 import java.util.List;
 import jakarta.validation.constraints.NotBlank;
 
@@ -11,11 +10,7 @@ public record CourseRequest (
     String semester,
     @NotBlank(message = "Turno não pode ser em branco")
     String shift,
-   List<String> classSubjects
+    List<Integer> classSubjects
 ) {
-
-    public List<String> classSubjects() {
-        return this.classSubjects != null ? this.classSubjects : Collections.emptyList();
-    }
     
 }

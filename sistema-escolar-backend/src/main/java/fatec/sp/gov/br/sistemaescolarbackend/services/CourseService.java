@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fatec.sp.gov.br.sistemaescolarbackend.dtos.CourseRequest;
-import fatec.sp.gov.br.sistemaescolarbackend.entities.ClassSubject;
+import fatec.sp.gov.br.sistemaescolarbackend.dtos.CourseResponse;
 import fatec.sp.gov.br.sistemaescolarbackend.entities.Course;
-import fatec.sp.gov.br.sistemaescolarbackend.repositories.ClassSubjectRepository;
+import fatec.sp.gov.br.sistemaescolarbackend.mappers.CourseMapper;
 import fatec.sp.gov.br.sistemaescolarbackend.repositories.CourseRepository;
 import jakarta.persistence.EntityNotFoundException;
 
@@ -16,58 +16,46 @@ import java.util.stream.Collectors;
 
 @Service
 public class CourseService {
-
     @Autowired
-    private CourseRepository courseRepository;
+    private CourseRepository repository;
 
-    @Autowired
-    private ClassSubjectRepository classSubjectRepository;
-
-    public List<Course> getAllCourses() {
-        return courseRepository.findAll();
+    public List<CourseResponse> getCourseResponses() {
+        List<Course> courses = repository.findAll();
+        return courses.stream()
+                .map(CourseMapper::toDTO)
+                .collect(Collectors.toList());
     }
 
-    public Course createCourse(Course course) {
-        return courseRepository.save(course);
+    public CourseResponse getCourseResponse(long id) {
+        Course course = repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Course not found"));
+        return CourseMapper.toDTO(course);
     }
 
-    public Course getCourseById(Long id) {
-        return courseRepository.findById(id).orElse(null);
+    public void deleteCourseById(long id) {
+        if (this.repository.existsById(id)) {
+            this.repository.deleteById(id);
+        } else {
+            throw new EntityNotFoundException("Course not found");
+        }
     }
 
-    public void deleteCourse(Long id) {
-        courseRepository.deleteById(id);
+    public CourseResponse save(CourseRequest course) {
+        var entity = this.repository.save(CourseMapper.toEntity(course));
+        return CourseMapper.toDTO(entity);
     }
 
-    public void update(long id, CourseRequest courseRequest) {
+    public void update(long id, CourseRequest course) {
         try {
-            var updateCourse = this.courseRepository.getReferenceById(id);
-            updateCourse.setName(courseRequest.name());
-            updateCourse.setCourseYear(courseRequest.courseYear());
-            updateCourse.setSemester(courseRequest.semester());
-            updateCourse.setShift(courseRequest.shift());
-
-            // Mapeie as strings para objetos ClassSubject
-            List<ClassSubject> classSubjects = courseRequest.classSubjects().stream()
-                    .map(disciplineName -> {
-                        ClassSubject classSubject = classSubjectRepository.findByName(disciplineName);
-                        // Se a disciplina não existir, crie uma nova
-                        if (classSubject == null) {
-                            classSubject = new ClassSubject();
-                            classSubject.setName(disciplineName);
-                            // Outros campos da disciplina podem precisar ser preenchidos aqui
-                            classSubjectRepository.save(classSubject);
-                        }
-                        return classSubject;
-                    })
-                    .collect(Collectors.toList());
-
-            updateCourse.setClassSubjects(classSubjects);
-
-            this.courseRepository.save(updateCourse);
+            var updateCourse = this.repository.getReferenceById(id);
+            updateCourse.setName(course.name());
+            updateCourse.setCourseYear(course.courseYear());
+            updateCourse.setSemester(course.semester());
+            updateCourse.setShift(course.shift());
+            updateCourse.setClassSubjects(course.classSubjects());
+            this.repository.save(updateCourse);
         } catch (EntityNotFoundException e) {
             throw new EntityNotFoundException("Course not found");
-        } 
+        }
     }
-    
 }

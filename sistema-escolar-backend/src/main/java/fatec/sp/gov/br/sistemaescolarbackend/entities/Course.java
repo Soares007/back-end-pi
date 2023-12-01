@@ -1,18 +1,13 @@
 package fatec.sp.gov.br.sistemaescolarbackend.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -25,9 +20,7 @@ public class Course implements Serializable {
     private String courseYear;
     private String semester;
     private String shift;
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "COURSE_CLASS_SUBJECT", joinColumns = @JoinColumn(name = "course_id"), inverseJoinColumns = @JoinColumn(name = "class_subject_id"))
-    private List<ClassSubject> classSubjects = new ArrayList<>();
+    private List<Integer> classSubjects;
 
     public Long getId() {
         return id;
@@ -69,11 +62,11 @@ public class Course implements Serializable {
         this.shift = shift;
     }
 
-    public List<ClassSubject> getClassSubjects() {
+    public List<Integer> getClassSubjects() {
         return classSubjects;
     }
 
-    public void setClassSubjects(List<ClassSubject> classSubjects) {
+    public void setClassSubjects(List<Integer> classSubjects) {
         this.classSubjects = classSubjects;
     }
 
@@ -101,4 +94,5 @@ public class Course implements Serializable {
             return false;
         return true;
     }
+
 }

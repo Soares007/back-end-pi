@@ -8,6 +8,6 @@ public record CourseResponse (
     String courseYear,
     String semester,
     String shift,
-    List<String> classSubjects
+    List<Integer> classSubjects
 ) {
 }
