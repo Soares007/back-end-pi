@@ -19,7 +19,7 @@ import fatec.sp.gov.br.sistemaescolarbackend.entities.Team;
 import fatec.sp.gov.br.sistemaescolarbackend.services.TeamService;
 
 @RestController
-@RequestMapping("/team")
+@RequestMapping("/teams")
 @CrossOrigin
 public class TeamController {
     @Autowired
