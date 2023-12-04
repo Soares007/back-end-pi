@@ -19,14 +19,14 @@ import fatec.sp.gov.br.sistemaescolarbackend.entities.Team;
 import fatec.sp.gov.br.sistemaescolarbackend.services.TeamService;
 
 @RestController
-@RequestMapping("/teachers")
+@RequestMapping("/team")
 @CrossOrigin
 public class TeamController {
     @Autowired
     private TeamService teamService;
 
     @GetMapping
-    public List<Team> getAllTeachers() {
+    public List<Team> getAllTeams() {
         return teamService.getAllTeams();
     }
 
@@ -36,12 +36,12 @@ public class TeamController {
     }
 
     @PostMapping
-    public Team createTeacher(@RequestBody Team team) {
+    public Team createTeam(@RequestBody Team team) {
         return teamService.createTeam(team);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteTeacher(@PathVariable Long id) {
+    public void deleteTeam(@PathVariable Long id) {
         teamService.deleteTeam(id);
     }
 

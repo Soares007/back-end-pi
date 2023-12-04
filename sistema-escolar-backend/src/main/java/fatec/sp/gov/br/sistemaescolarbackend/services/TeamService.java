@@ -3,12 +3,14 @@ package fatec.sp.gov.br.sistemaescolarbackend.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import fatec.sp.gov.br.sistemaescolarbackend.dtos.TeamRequest;
 import fatec.sp.gov.br.sistemaescolarbackend.entities.Team;
 import fatec.sp.gov.br.sistemaescolarbackend.repositories.TeamRepository;
 import jakarta.persistence.EntityNotFoundException;
 
+@Service
 public class TeamService {
     @Autowired
     private TeamRepository teamRepository;
