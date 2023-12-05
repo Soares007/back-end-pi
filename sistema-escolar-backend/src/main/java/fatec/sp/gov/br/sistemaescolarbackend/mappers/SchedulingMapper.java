@@ -10,7 +10,7 @@ public class SchedulingMapper {
         Scheduling scheduling = new Scheduling();
         scheduling.setCourseId(request.courseId());
         scheduling.setClassSubjectId(request.classSubjectId());
-        scheduling.setProfessor(request.professor());
+        scheduling.setTeacher(request.teacher());
         scheduling.setStartTime(request.startTime());
         scheduling.setEndTime(request.endTime());
         scheduling.setDayOfWeek(request.dayOfWeek());
@@ -24,7 +24,7 @@ public class SchedulingMapper {
                 scheduling.getId(),
                 scheduling.getCourseId(),
                 scheduling.getClassSubjectId(),
-                scheduling.getProfessor(),
+                scheduling.getTeacher(),
                 scheduling.getStartTime(),
                 scheduling.getEndTime(),
                 scheduling.getDayOfWeek(),

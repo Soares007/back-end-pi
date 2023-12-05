@@ -16,7 +16,7 @@ public class Scheduling implements Serializable {
     private Long id;
     private Long courseId;
     private Long classSubjectId;
-    private String professor;
+    private String teacher;
     private String startTime;
     private String endTime;
     private String dayOfWeek;
@@ -48,12 +48,12 @@ public class Scheduling implements Serializable {
         this.classSubjectId = classSubjectId;
     }
 
-    public String getProfessor() {
-        return professor;
+    public String getTeacher() {
+        return teacher;
     }
 
-    public void setProfessor(String professor) {
-        this.professor = professor;
+    public void setTeacher(String teacher) {
+        this.teacher = teacher;
     }
 
     public String getStartTime() {

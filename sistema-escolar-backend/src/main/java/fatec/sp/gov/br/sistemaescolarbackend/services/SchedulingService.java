@@ -37,7 +37,7 @@ public class SchedulingService {
             var updateScheduling = this.schedulingRepository.getReferenceById(id);
             updateScheduling.setCourseId(schedulingRequest.courseId());
             updateScheduling.setClassSubjectId(schedulingRequest.classSubjectId());
-            updateScheduling.setProfessor(schedulingRequest.professor());
+            updateScheduling.setTeacher(schedulingRequest.teacher());
             updateScheduling.setStartTime(schedulingRequest.startTime());
             updateScheduling.setEndTime(schedulingRequest.endTime());
             updateScheduling.setDayOfWeek(schedulingRequest.dayOfWeek());

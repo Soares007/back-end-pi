@@ -4,7 +4,7 @@ public record SchedulingResponse(
         Long id,
         Long courseId,
         Long classSubjectId,
-        String professor,
+        String teacher,
         String startTime,
         String endTime,
         String dayOfWeek,

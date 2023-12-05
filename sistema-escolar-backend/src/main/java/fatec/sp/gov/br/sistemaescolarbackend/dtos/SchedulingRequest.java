@@ -7,7 +7,7 @@ public record SchedulingRequest(
         @NotNull Long courseId,
         @NotNull Long classSubjectId,
         @NotBlank(message = "Professor não pode ser em branco")
-        String professor,
+        String teacher,
         @NotBlank(message = "Hora de início não pode ser em branco")
         String startTime,
         @NotBlank(message = "Hora de término não pode ser em branco")
