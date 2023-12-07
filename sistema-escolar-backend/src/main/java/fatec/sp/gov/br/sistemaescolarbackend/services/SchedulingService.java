@@ -41,8 +41,7 @@ public class SchedulingService {
             updateScheduling.setStartTime(schedulingRequest.startTime());
             updateScheduling.setEndTime(schedulingRequest.endTime());
             updateScheduling.setDayOfWeek(schedulingRequest.dayOfWeek());
-            updateScheduling.setRoom(schedulingRequest.room());
-            updateScheduling.setLaboratory(schedulingRequest.laboratory());
+            updateScheduling.setRoomAndLaboratory(schedulingRequest.roomAndLaboratory());
             this.schedulingRepository.save(updateScheduling);
         } catch (EntityNotFoundException e) {
             throw new EntityNotFoundException("Scheduling not found");

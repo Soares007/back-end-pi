@@ -24,7 +24,7 @@ public class CourseMapper {
             course.getCourseYear(),
             course.getSemester(),
             course.getShift(),
-            course.getClassSubjects()
+            course.getClassSubjectsList()
         );
     }
     

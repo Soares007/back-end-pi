@@ -14,8 +14,7 @@ public class SchedulingMapper {
         scheduling.setStartTime(request.startTime());
         scheduling.setEndTime(request.endTime());
         scheduling.setDayOfWeek(request.dayOfWeek());
-        scheduling.setRoom(request.room());
-        scheduling.setLaboratory(request.laboratory());
+        scheduling.setRoomAndLaboratory(request.roomAndLaboratory());
         return scheduling;
     }
 
@@ -28,8 +27,7 @@ public class SchedulingMapper {
                 scheduling.getStartTime(),
                 scheduling.getEndTime(),
                 scheduling.getDayOfWeek(),
-                scheduling.getRoom(),
-                scheduling.getLaboratory()
+                scheduling.getRoomAndLaboratory()
         );
     }
 }

@@ -8,8 +8,7 @@ public record SchedulingResponse(
         String startTime,
         String endTime,
         String dayOfWeek,
-        String room,
-        String laboratory
+        String roomAndLaboratory
 ) {
 
 }

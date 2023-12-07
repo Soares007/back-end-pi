@@ -20,8 +20,7 @@ public class Scheduling implements Serializable {
     private String startTime;
     private String endTime;
     private String dayOfWeek;
-    private String room;
-    private String laboratory;
+    private String roomAndLaboratory;
 
 
     public Long getId() {
@@ -48,7 +47,7 @@ public class Scheduling implements Serializable {
         this.classSubjectId = classSubjectId;
     }
 
-    public String getTeacher() {
+   public String getTeacher() {
         return teacher;
     }
 
@@ -80,20 +79,12 @@ public class Scheduling implements Serializable {
         this.dayOfWeek = dayOfWeek;
     }
 
-    public String getRoom() {
-        return room;
+    public String getRoomAndLaboratory() {
+        return roomAndLaboratory;
     }
 
-    public void setRoom(String room) {
-        this.room = room;
-    }
-
-    public String getLaboratory() {
-        return laboratory;
-    }
-
-    public void setLaboratory(String laboratory) {
-        this.laboratory = laboratory;
+    public void setRoomAndLaboratory(String roomAndLaboratory) {
+        this.roomAndLaboratory = roomAndLaboratory;
     }
 
     @Override
@@ -120,4 +111,5 @@ public class Scheduling implements Serializable {
             return false;
         return true;
     }
+
 }

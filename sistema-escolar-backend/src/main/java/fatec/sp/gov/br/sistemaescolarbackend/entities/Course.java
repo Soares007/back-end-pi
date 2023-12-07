@@ -1,14 +1,22 @@
 package fatec.sp.gov.br.sistemaescolarbackend.entities;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
-import jakarta.persistence.Entity;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.type.TypeReference;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+
+
 
 @Entity
 @Table(name = "TBL_COURSES")
@@ -20,7 +28,9 @@ public class Course implements Serializable {
     private String courseYear;
     private String semester;
     private String shift;
-    private List<Integer> classSubjects;
+
+    @Column(columnDefinition = "TEXT")
+    private String classSubjects;
 
     public Long getId() {
         return id;
@@ -62,12 +72,21 @@ public class Course implements Serializable {
         this.shift = shift;
     }
 
-    public List<Integer> getClassSubjects() {
-        return classSubjects;
+    public void setClassSubjects(List<Integer> classSubjects) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            this.classSubjects = objectMapper.writeValueAsString(classSubjects);
+        } catch (JsonProcessingException e) {
+        }
     }
 
-    public void setClassSubjects(List<Integer> classSubjects) {
-        this.classSubjects = classSubjects;
+     public List<Integer> getClassSubjectsList() {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            return objectMapper.readValue(classSubjects, new TypeReference<List<Integer>>() {});
+        } catch (IOException e) {
+            return Collections.emptyList(); 
+        }
     }
 
     @Override
