@@ -40,7 +40,7 @@ public class TeamService {
             updateTeam.setStudents(team.students());
             this.teamRepository.save(updateTeam);
         } catch (EntityNotFoundException e) {
-            throw new EntityNotFoundException("Teacher not found");
+            throw new EntityNotFoundException("Team not found");
         }
     }
 }

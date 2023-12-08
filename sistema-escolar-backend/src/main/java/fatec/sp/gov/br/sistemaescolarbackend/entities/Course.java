@@ -16,8 +16,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-
-
 @Entity
 @Table(name = "TBL_COURSES")
 public class Course implements Serializable {
@@ -77,15 +75,22 @@ public class Course implements Serializable {
             ObjectMapper objectMapper = new ObjectMapper();
             this.classSubjects = objectMapper.writeValueAsString(classSubjects);
         } catch (JsonProcessingException e) {
+            // Tratar a exceção de forma apropriada (por exemplo, registrar ou lançar uma exceção personalizada)
+            e.printStackTrace();
         }
     }
 
-     public List<Integer> getClassSubjectsList() {
+    public List<Integer> getClassSubjectsList() {
         try {
+            if (classSubjects == null) {
+                return Collections.emptyList();
+            }
             ObjectMapper objectMapper = new ObjectMapper();
             return objectMapper.readValue(classSubjects, new TypeReference<List<Integer>>() {});
         } catch (IOException e) {
-            return Collections.emptyList(); 
+            // Tratar a exceção de forma apropriada (por exemplo, registrar ou lançar uma exceção personalizada)
+            e.printStackTrace();
+            return Collections.emptyList();
         }
     }
 
@@ -113,5 +118,4 @@ public class Course implements Serializable {
             return false;
         return true;
     }
-
 }

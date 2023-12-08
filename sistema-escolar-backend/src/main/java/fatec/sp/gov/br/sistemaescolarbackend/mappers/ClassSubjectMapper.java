@@ -11,9 +11,6 @@ public class ClassSubjectMapper {
         classSubject.setName(request.name());
         classSubject.setDescription(request.description());
         classSubject.setTeacher(request.teacher());
-        classSubject.setStarttime(request.starttime());
-        classSubject.setEndtime(request.endtime());
-        classSubject.setDayofweek(request.dayofweek());
         return classSubject;
     }
 
@@ -22,10 +19,7 @@ public class ClassSubjectMapper {
                 classSubject.getId(),
                 classSubject.getName(),
                 classSubject.getDescription(),
-                classSubject.getTeacher(),
-                classSubject.getStarttime(),
-                classSubject.getEndtime(),
-                classSubject.getDayofweek()
+                classSubject.getTeacher()
         );
     }
 }
