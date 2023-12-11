@@ -37,7 +37,6 @@ public class ClassSubjectService {
             var updateClassSubject = this.classSubjectRepository.getReferenceById(id);
             updateClassSubject.setName(classSubjectRequest.name());
             updateClassSubject.setDescription(classSubjectRequest.description());
-            updateClassSubject.setTeacher(classSubjectRequest.teacher());
             this.classSubjectRepository.save(updateClassSubject);
         } catch (EntityNotFoundException e) {
             throw new EntityNotFoundException("Class subject not found");

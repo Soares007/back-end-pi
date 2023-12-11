@@ -1,7 +1,15 @@
 package fatec.sp.gov.br.sistemaescolarbackend.entities;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.List;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.type.TypeReference;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,9 +22,11 @@ public class Teacher implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String cpf;
     private String name;
-    private String school_subject;
+    private String cpf;
+    
+    @Column(columnDefinition = "TEXT")
+    private String classSubjects;
 
     public Long getId() {
         return id;
@@ -24,14 +34,6 @@ public class Teacher implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
     }
 
     public String getName() {
@@ -42,14 +44,35 @@ public class Teacher implements Serializable {
         this.name = name;
     }
 
-    public String getSchool_subject() {
-        return school_subject;
+     public String getCpf() {
+        return cpf;
     }
 
-    public void setSchool_subject(String school_subject) {
-        this.school_subject = school_subject;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
-  
+
+    public void setClassSubjects(List<Integer> classSubjects) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            this.classSubjects = objectMapper.writeValueAsString(classSubjects);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Integer> getClassSubjects() {
+        try {
+            if (classSubjects == null) {
+                return Collections.emptyList();
+            }
+            ObjectMapper objectMapper = new ObjectMapper();
+            return objectMapper.readValue(classSubjects, new TypeReference<List<Integer>>() {});
+        } catch (IOException e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
+    }
 
     @Override
     public int hashCode() {

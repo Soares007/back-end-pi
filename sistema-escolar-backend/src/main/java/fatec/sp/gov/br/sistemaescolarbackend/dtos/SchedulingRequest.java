@@ -12,8 +12,8 @@ public record SchedulingRequest(
         String startTime,
         @NotBlank(message = "Hora de término não pode ser em branco")
         String endTime,
-        @NotBlank(message = "Dia da semana não pode ser em branco")
-        String dayOfWeek,
+        @NotBlank(message = "Data não pode ser em branco")
+        String calendar,
         @NotBlank(message = "Sala/Laboratório não pode ser em branco")
         String roomAndLaboratory
 ) {

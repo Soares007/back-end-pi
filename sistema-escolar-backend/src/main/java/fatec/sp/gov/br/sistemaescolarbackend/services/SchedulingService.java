@@ -40,7 +40,7 @@ public class SchedulingService {
             updateScheduling.setTeacher(schedulingRequest.teacher());
             updateScheduling.setStartTime(schedulingRequest.startTime());
             updateScheduling.setEndTime(schedulingRequest.endTime());
-            updateScheduling.setDayOfWeek(schedulingRequest.dayOfWeek());
+            updateScheduling.setCalendar(schedulingRequest.calendar());
             updateScheduling.setRoomAndLaboratory(schedulingRequest.roomAndLaboratory());
             this.schedulingRepository.save(updateScheduling);
         } catch (EntityNotFoundException e) {

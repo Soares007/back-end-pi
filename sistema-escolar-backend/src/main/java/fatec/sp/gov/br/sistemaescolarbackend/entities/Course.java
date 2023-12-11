@@ -75,7 +75,6 @@ public class Course implements Serializable {
             ObjectMapper objectMapper = new ObjectMapper();
             this.classSubjects = objectMapper.writeValueAsString(classSubjects);
         } catch (JsonProcessingException e) {
-            // Tratar a exceção de forma apropriada (por exemplo, registrar ou lançar uma exceção personalizada)
             e.printStackTrace();
         }
     }
@@ -88,7 +87,6 @@ public class Course implements Serializable {
             ObjectMapper objectMapper = new ObjectMapper();
             return objectMapper.readValue(classSubjects, new TypeReference<List<Integer>>() {});
         } catch (IOException e) {
-            // Tratar a exceção de forma apropriada (por exemplo, registrar ou lançar uma exceção personalizada)
             e.printStackTrace();
             return Collections.emptyList();
         }

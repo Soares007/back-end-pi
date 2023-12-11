@@ -1,44 +1,56 @@
 package fatec.sp.gov.br.sistemaescolarbackend.services;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import fatec.sp.gov.br.sistemaescolarbackend.dtos.TeacherRequest;
+import fatec.sp.gov.br.sistemaescolarbackend.dtos.TeacherResponse;
 import fatec.sp.gov.br.sistemaescolarbackend.entities.Teacher;
+import fatec.sp.gov.br.sistemaescolarbackend.mappers.TeacherMapper;
 import fatec.sp.gov.br.sistemaescolarbackend.repositories.TeacherRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TeacherService {
     @Autowired
     private TeacherRepository teacherRepository;
 
-    public List<Teacher> getAllTeachers() {
-        return teacherRepository.findAll();
+    public List<TeacherResponse> getAllTeachers() {
+        List<Teacher> teachers = teacherRepository.findAll();
+        return teachers.stream()
+                .map(TeacherMapper::toDTO)
+                .collect(Collectors.toList());
     }
 
-    public Teacher createTeacher(Teacher teacher) {
-        return teacherRepository.save(teacher);
+    public TeacherResponse getTeacherById(Long id) {
+        Teacher teacher = teacherRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Teacher not found with id: " + id));
+        return TeacherMapper.toDTO(teacher);
     }
 
-    public Teacher getTeacherById(Long id) {
-        return teacherRepository.findById(id).orElse(null);
+    public TeacherResponse createTeacher(TeacherRequest teacherRequest) {
+        Teacher teacher = TeacherMapper.toEntity(teacherRequest);
+        Teacher savedTeacher = teacherRepository.save(teacher);
+        return TeacherMapper.toDTO(savedTeacher);
     }
 
     public void deleteTeacher(Long id) {
         teacherRepository.deleteById(id);
     }
 
-    public void update(long id, TeacherRequest teacher) {
+    public void update(Long id, TeacherRequest teacherRequest) {
         try {
-            var updateTeacher = this.teacherRepository.getReferenceById(id);
-            updateTeacher.setCpf(teacher.cpf());
-            updateTeacher.setName(teacher.name());
-            updateTeacher.setSchool_subject(teacher.school_subject());
-            this.teacherRepository.save(updateTeacher);
+            Teacher existingTeacher = teacherRepository.findById(id)
+                    .orElseThrow(() -> new EntityNotFoundException("Teacher not found with id: " + id));
+
+            existingTeacher.setCpf(teacherRequest.cpf());
+            existingTeacher.setName(teacherRequest.name());
+            existingTeacher.setClassSubjects(teacherRequest.classSubjects());
+
+            teacherRepository.save(existingTeacher);
         } catch (EntityNotFoundException e) {
             throw new EntityNotFoundException("Teacher not found");
         }

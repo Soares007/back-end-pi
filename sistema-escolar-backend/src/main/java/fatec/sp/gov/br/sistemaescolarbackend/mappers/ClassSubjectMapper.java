@@ -10,7 +10,6 @@ public class ClassSubjectMapper {
         ClassSubject classSubject = new ClassSubject();
         classSubject.setName(request.name());
         classSubject.setDescription(request.description());
-        classSubject.setTeacher(request.teacher());
         return classSubject;
     }
 
@@ -18,8 +17,7 @@ public class ClassSubjectMapper {
         return new ClassSubjectResponse(
                 classSubject.getId(),
                 classSubject.getName(),
-                classSubject.getDescription(),
-                classSubject.getTeacher()
+                classSubject.getDescription()
         );
     }
 }

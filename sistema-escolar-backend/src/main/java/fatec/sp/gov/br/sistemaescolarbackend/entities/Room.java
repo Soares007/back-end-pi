@@ -15,7 +15,8 @@ public class Room implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    
+    private String identity;
+
     public Long getId() {
         return id;
     }
@@ -28,13 +29,19 @@ public class Room implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-
+    public String getIdentity() {
+        return identity;
+    }
+    public void setIdentity(String identity) {
+        this.identity = identity;
+    }
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + ((identity == null) ? 0 : identity.hashCode());
         return result;
     }
     @Override
@@ -56,6 +63,13 @@ public class Room implements Serializable {
                 return false;
         } else if (!name.equals(other.name))
             return false;
+        if (identity == null) {
+            if (other.identity != null)
+                return false;
+        } else if (!identity.equals(other.identity))
+            return false;
         return true;
     }
+    
+    
 }

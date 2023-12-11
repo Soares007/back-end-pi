@@ -5,8 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 public record ClassSubjectRequest (
     @NotBlank(message = "Nome não pode ser em branco")
     String name,
-    String description,
-    String teacher
+    String description
 ) {
     
 }

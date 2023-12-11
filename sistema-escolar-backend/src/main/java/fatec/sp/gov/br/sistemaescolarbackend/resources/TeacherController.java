@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import fatec.sp.gov.br.sistemaescolarbackend.dtos.TeacherRequest;
-import fatec.sp.gov.br.sistemaescolarbackend.entities.Teacher;
+import fatec.sp.gov.br.sistemaescolarbackend.dtos.TeacherResponse;
 import fatec.sp.gov.br.sistemaescolarbackend.services.TeacherService;
 
 import java.util.List;
@@ -18,18 +18,18 @@ public class TeacherController {
     private TeacherService teacherService;
 
     @GetMapping
-    public List<Teacher> getAllTeachers() {
+    public List<TeacherResponse> getAllTeachers() {
         return teacherService.getAllTeachers();
     }
 
     @GetMapping("/{id}")
-    public Teacher getTeacher(@PathVariable Long id) {
+    public TeacherResponse getTeacher(@PathVariable Long id) {
         return teacherService.getTeacherById(id);
     }
 
     @PostMapping
-    public Teacher createTeacher(@RequestBody Teacher teacher) {
-        return teacherService.createTeacher(teacher);
+    public TeacherResponse createTeacher(@RequestBody TeacherRequest teacherRequest) {
+        return teacherService.createTeacher(teacherRequest);
     }
 
     @DeleteMapping("/{id}")
@@ -39,10 +39,8 @@ public class TeacherController {
 
     @PutMapping("{id}")
     public ResponseEntity<Void> update(@RequestBody TeacherRequest teacher,
-                                       @PathVariable long id
-    ){
+                                       @PathVariable long id) {
         teacherService.update(id, teacher);
         return ResponseEntity.ok().build();
     }
 }
-

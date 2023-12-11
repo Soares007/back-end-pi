@@ -2,6 +2,7 @@ package fatec.sp.gov.br.sistemaescolarbackend.dtos;
 
 public record RoomResponse(
     Long id,
-    String name
+    String name,
+    String identity
 ) {
 }

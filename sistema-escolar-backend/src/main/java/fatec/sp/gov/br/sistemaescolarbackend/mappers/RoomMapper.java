@@ -9,6 +9,7 @@ public class RoomMapper {
     public static Room toEntity(RoomRequest request) {
         Room room = new Room();
         room.setName(request.name());
+        room.setIdentity(request.identity());
         
         return room;
     }
@@ -16,7 +17,8 @@ public class RoomMapper {
     public static RoomResponse toDTO(Room room) {
         return new RoomResponse(
             room.getId(),
-            room.getName()
+            room.getName(),
+            room.getIdentity()
         );
     }
 }
